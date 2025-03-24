@@ -7,6 +7,7 @@ import ru.dugarov.servicetodo.entity.TaskStatus;
 import ru.dugarov.servicetodo.model.TaskRequest;
 import ru.dugarov.servicetodo.repository.TaskRepository;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -18,6 +19,8 @@ public class TaskService {
         Task task = Task.builder()
                 .name(request.getName())
                 .description(request.getDescription())
+                .status(TaskStatus.NOT_COMPLETED)
+                .createTime(Instant.now())
                 .build();
 
         taskRepository.save(task);

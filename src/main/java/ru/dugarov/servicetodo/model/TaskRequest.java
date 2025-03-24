@@ -13,6 +13,5 @@ public class TaskRequest {
     @NotBlank
     private String name;
     private String description;
-    @NotBlank
     private TaskStatus status;
 }

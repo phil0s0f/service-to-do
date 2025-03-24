@@ -1,7 +1,6 @@
 package ru.dugarov.servicetodo.controller;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getTasks(@RequestParam(required = false) @NotBlank TaskStatus status) {
+    public ResponseEntity<List<Task>> getTasks(@RequestParam(required = false) TaskStatus status) {
         List<Task> tasks = taskService.getTasks(status);
         return ResponseEntity.ok(tasks);
     }
