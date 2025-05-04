@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.dugarov.servicetodo.entity.TaskStatus;
-import ru.dugarov.servicetodo.model.TaskDto;
+import ru.dugarov.servicetodo.dto.TaskDto;
 import ru.dugarov.servicetodo.service.TaskService;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class TaskController {
 
     @GetMapping
     public ResponseEntity<List<TaskDto>> getTasks(@RequestParam(required = false) TaskStatus status) {
-        return ResponseEntity.ok(taskService.getTasks(status));
+        return ResponseEntity.ok(taskService.getTasksByStatus(status));
     }
 
     @GetMapping("/{id}")

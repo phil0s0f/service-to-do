@@ -4,15 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "app_user")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Task {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,14 +22,12 @@ public class Task {
     @NotBlank
     private String name;
 
-    private String description;
+    @NotBlank
+    private String email;
 
-    @Enumerated(EnumType.STRING)
-    private TaskStatus status = TaskStatus.NOT_COMPLETED;
+    private Boolean isDeleted = false;
 
-    private Instant createTime = Instant.now();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Task> tasks = new ArrayList<>();
 }

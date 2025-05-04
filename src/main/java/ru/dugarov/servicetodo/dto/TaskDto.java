@@ -1,4 +1,4 @@
-package ru.dugarov.servicetodo.model;
+package ru.dugarov.servicetodo.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -18,4 +18,5 @@ public class TaskDto {
     private String description;
     private TaskStatus status;
     private Instant createTime;
+    private Long userId;
 }
